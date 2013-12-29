@@ -11,6 +11,7 @@ fill=screen.fill
 #path list begins here
 title_path="music/Titles/Title.ogg"
 titlebg_path="images/SuperMarioGalaxyTitle.png"
+#path list ends here
 music.load(title_path)
 music.set_volume(0.6)
 music.play(-1)
