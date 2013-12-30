@@ -1,4 +1,4 @@
-import pygame, resources
+import pygame
 pygame.init()
 mixer=pygame.mixer
 mixer.init()
@@ -9,8 +9,8 @@ blit=screen.blit
 load=pygame.image.load
 fill=screen.fill
 #path list begins here
-title_path=resources.get_resource_path("Title.ogg", "music/Titles")
-titlebg_path=resources.get_resource_path("SuperMarioGalaxyTitle.png", "images")
+title_path="music/Titles/Title.ogg"
+titlebg_path="images/SuperMarioGalaxyTitle.png"
 #path list ends here
 music.load(title_path)
 music.set_volume(0.6)
@@ -23,10 +23,10 @@ run=1
 q=0
 while run:
     for event in pygame.event.get():
-        if event.type==pygame.QUIT:
-            q=1
-            run=0
-        elif event.type==pygame.KEYDOWN:
-            if event.key==pygame.K_x:
-                run=0
+	if event.type==pygame.QUIT:
+	    q=1
+	    run=0
+	elif event.type==pygame.KEYDOWN:
+	    if event.key==pygame.K_x:
+		run=0
 if q:pygame.quit()
