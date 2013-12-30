@@ -9,7 +9,7 @@ blit=screen.blit
 load=pygame.image.load
 fill=screen.fill
 #path list begins here
-title_path=resources.get_resource_path("Title.ogg", "music/Titles")
+title_path=resources.get_resource_path("BowserJrCastleSMG2.ogg", "music/Areas")
 titlebg_path=resources.get_resource_path("SuperMarioGalaxyTitle.png", "images")
 #path list ends here
 music.load(title_path)
