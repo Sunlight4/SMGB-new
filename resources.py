@@ -1,6 +1,6 @@
 import os
 import urllib2
-
+import shutil
 import math
 
  
@@ -29,7 +29,9 @@ def downloadChunks(url):
     try:
 
         file = baseFile
-
+        if os.path.exists(file):
+            print baseFile, "already exists"
+            return file
 
  
         req = urllib2.urlopen(url)
@@ -73,3 +75,6 @@ def get_resource_path(name, domain):
     r=downloadChunks(url)
     print r
     return r
+def done():
+    shutil.rmtree("tmp")
+    
