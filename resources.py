@@ -3,7 +3,7 @@ import urllib2
 import shutil
 import math
 
-downloaded=[]
+download_list=[]
 def downloadChunks(url):
 
     """Helper to download large files
@@ -15,8 +15,7 @@ def downloadChunks(url):
 
        in chunks and print out how much remains
     """
-
-    global downloaded
+    global download_list
     baseFile = os.path.basename(url)
 
  
@@ -55,7 +54,7 @@ def downloadChunks(url):
                 if not chunk: break
 
                 fp.write(chunk)
-            downloaded.append(file)
+            download_list.append(file)
 
     except urllib2.HTTPError, e:
 
@@ -69,16 +68,16 @@ def downloadChunks(url):
 
         return False
 
- 
+    print download_list 
     return file
+
 def get_resource_path(name, domain):
-    global downloaded
     url="http://vsurvival.com/SMBG-resources/"+domain+"/"+name
     r=downloadChunks(url)
     print r
     return r
 def done():
-    for i in downloaded:
+    for i in download_list:
         os.unlink(i)
         print "deleted", i
     
