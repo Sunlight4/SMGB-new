@@ -1,4 +1,7 @@
-import pygame, resources
+import pygame, resources, optparse
+p=optparse.OptionParser()
+p.add_option('--test', '-t', action='store_true')
+options, arguments=p.parse_args()
 pygame.init()
 mixer=pygame.mixer
 mixer.init()
@@ -21,6 +24,8 @@ blit(titlebg, [0,0])
 flip()
 run=1
 q=0
+clear=0
+if options.test:clear=1
 while run:
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
@@ -30,3 +35,5 @@ while run:
             if event.key==pygame.K_x:
                 run=0
 if q:pygame.quit()
+if clear:resources.done()
+    

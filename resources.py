@@ -3,7 +3,7 @@ import urllib2
 import shutil
 import math
 
- 
+downloaded=[]
 def downloadChunks(url):
 
     """Helper to download large files
@@ -71,10 +71,16 @@ def downloadChunks(url):
  
     return file
 def get_resource_path(name, domain):
+    global downloaded
     url="http://vsurvival.com/SMBG-resources/"+domain+"/"+name
     r=downloadChunks(url)
     print r
+    downloaded.append(r)
     return r
 def done():
-    shutil.rmtree("tmp")
+    for i in downloaded:
+        os.unlink(i)
+        print "deleted", i
+    
+    
     
