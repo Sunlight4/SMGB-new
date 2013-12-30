@@ -16,7 +16,7 @@ def downloadChunks(url):
        in chunks and print out how much remains
     """
 
- 
+    global downloaded
     baseFile = os.path.basename(url)
 
  
@@ -55,6 +55,7 @@ def downloadChunks(url):
                 if not chunk: break
 
                 fp.write(chunk)
+            downloaded.append(file)
 
     except urllib2.HTTPError, e:
 
@@ -75,7 +76,6 @@ def get_resource_path(name, domain):
     url="http://vsurvival.com/SMBG-resources/"+domain+"/"+name
     r=downloadChunks(url)
     print r
-    downloaded.append(r)
     return r
 def done():
     for i in downloaded:
