@@ -1,4 +1,4 @@
-import pygame, resources, optparse
+import pygame, resources, optparse, intro
 p=optparse.OptionParser()
 p.add_option('--test', '-t', action='store_true')
 options, arguments=p.parse_args()
@@ -16,7 +16,7 @@ title_path=resources.get_resource_path("FinalBowserCastleSMG2.ogg", "music/Areas
 titlebg_path=resources.get_resource_path("SuperMarioGalaxyTitle.png", "images")
 #path list ends here
 music.load(title_path)
-music.set_volume(0.6)
+music.set_volume(1)
 music.play(-1)
 titlebg=load(titlebg_path)
 fill([0,0,0])
@@ -36,4 +36,4 @@ while run:
                 run=0
 if q:pygame.quit()
 if clear:resources.done()
-    
+intro.intro(screen)
