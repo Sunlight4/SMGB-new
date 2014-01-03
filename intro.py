@@ -1,4 +1,4 @@
-import resources, pygame
+import resources, pygame, easygui
 def intro(screen):
     #path list begins here
     music_path=resources.get_resource_path("BiancoHills.ogg", "music/Areas")
@@ -22,26 +22,31 @@ def intro(screen):
     marioy=0
     jump=False
     up=True
+    traveled=0
     while mariox < 640:
-	fill([0,0,0])
-	blit(bg, [0,0])
+        fill([0,0,0])
+        blit(bg, [0,0])
         for i in [0, 72, 144, 216, 360, 432, 576]:
             blit(grass, [i, 200])
         marioh=mario.get_rect().height
         if mariox==288:jump=True
-        elif mariox==360:jump=False
         elif mariox==504:jump=True
-        elif mariox==576:jump=False
+        if traveled >=72:jump=False; traveled=0
         if not jump:
             blit(mario, [mariox, 200-marioh+marioy])
             up=True
         else:
+            traveled+=1
             if marioy<=-36:up=False
-            if up:marioy-=3
-            else:marioy+=3
+            if up:marioy-=1
+            else:marioy+=1
             blit(mario_jump, [mariox, 200-marioh+marioy])
         flip()
-        mariox+=3
+        mariox+=1
+        for event in pygame.event.get():
+            if event.type==pygame.KEYDOWN:
+                if event.key==pygame.K_UP:
+                    jump=True
     #TODO:replace with code to run game
     pygame.quit()
     raise SystemExit
